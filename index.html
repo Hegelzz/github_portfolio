@@ -474,7 +474,7 @@
     <!-- Header & Navigation -->
     <header>
         <div class="container header-content">
-            <a href="#home" class="logo">Portfolio<span>.me</span></a>
+            <a href="#home" class="logo" id="logoLink">Portfolio<span>.me</span></a>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
@@ -501,39 +501,6 @@
                 </div>
                 <div class="hero-image">
                     <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Profile" class="profile-img">
-                </div>
-            </div>
-        </section>
-
-        <!-- Categories Section -->
-        <section id="categories">
-            <div class="container">
-                <h2 class="section-title">My Expertise</h2>
-                <div class="categories">
-                    <div class="category-card" data-category="web-design">
-                        <div class="category-icon">
-                            <i class="fas fa-pencil-ruler"></i>
-                        </div>
-                        <h3>Web Design</h3>
-                        <p>Beautiful and responsive web interfaces designed with user experience in mind.</p>
-                        <a href="#" class="btn view-category-btn" data-category="web-design">View Projects</a>
-                    </div>
-                    <div class="category-card" data-category="web-development">
-                        <div class="category-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Web Development</h3>
-                        <p>Full-stack solutions built with modern frameworks and clean, maintainable code.</p>
-                        <a href="#" class="btn view-category-btn" data-category="web-development">View Projects</a>
-                    </div>
-                    <div class="category-card" data-category="mobile-apps">
-                        <div class="category-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h3>Mobile Apps</h3>
-                        <p>Native and cross-platform mobile applications with seamless user experiences.</p>
-                        <a href="#" class="btn view-category-btn" data-category="mobile-apps">View Projects</a>
-                    </div>
                 </div>
             </div>
         </section>
@@ -786,6 +753,24 @@
         // Mobile menu toggle
         mobileMenuBtn.addEventListener('click', () => {
             mainNav.classList.toggle('active');
+        });
+
+        // Logo click - go back to home
+        document.getElementById('logoLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Update active nav link
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            document.querySelector('[data-page="home"]').classList.add('active');
+            
+            // Show home page
+            homePage.classList.remove('hidden');
+            projectsPage.classList.add('hidden');
+            projectDetailPage.classList.add('hidden');
+            contactPage.classList.add('hidden');
+            
+            // Close mobile menu if open
+            mainNav.classList.remove('active');
         });
 
         // Navigation
