@@ -159,15 +159,33 @@ function activateCurrentNavLink() {
 
 // Funktion för att ladda projekt efter kategori
 function loadProjectsByCategory(category) {
+    console.log('=== loadProjectsByCategory called ===');
+    console.log('Category:', category);
+    
     const categoryProjects = projects[category];
     const detailContainer = document.getElementById('detailContainer');
     
-    if (!categoryProjects || !detailContainer) return;
+    console.log('Category projects:', categoryProjects);
+    console.log('Detail container:', detailContainer);
+    
+    if (!categoryProjects) {
+        console.error('No projects found for category:', category);
+        if (detailContainer) {
+            detailContainer.innerHTML = `<p style="color: red;">No projects found for category: ${category}</p>`;
+        }
+        return;
+    }
+    
+    if (!detailContainer) {
+        console.error('Detail container not found!');
+        return;
+    }
     
     let categoryTitle = '';
     if (category === 'web-design') categoryTitle = 'Web Design';
     else if (category === 'web-development') categoryTitle = 'Web Development';
     else if (category === 'mobile-apps') categoryTitle = 'Mobile Apps';
+    else categoryTitle = category;
     
     let projectsHTML = `<h2 class="section-title">${categoryTitle}</h2>`;
     projectsHTML += '<div class="projects-grid">';
@@ -190,6 +208,7 @@ function loadProjectsByCategory(category) {
     
     projectsHTML += '</div>';
     detailContainer.innerHTML = projectsHTML;
+    console.log('Projects loaded successfully!');
     
     // Lägg till event listeners för de nya projekten
     setupProjectCardListeners();
@@ -254,11 +273,8 @@ function setupCategoryLinks() {
     
     categoryLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const category = this.getAttribute('data-category');
-            if (category) {
-                window.location.href = `project-detail.html?category=${category}`;
-            }
+            // Låt länken fungera normalt - den har redan href="project-detail.html?category=..."
+            // Denna funktion behövs kanske inte längre, men behålls för framtida use cases
         });
     });
 }
