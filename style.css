@@ -120,6 +120,7 @@ nav ul li a:hover, nav ul li a.active {
     height: 300px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: 60% 35%;
     border: 5px solid var(--primary-color);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
